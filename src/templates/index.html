@@ -1,0 +1,50 @@
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Index</title>
+</head>
+
+<body>
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %}">
+                <button type="button" class="close" data-dismiss="alert">x</button>
+                {{message}}
+            {% endfor%}
+        {% endif %}
+    </div>
+    <div class="row">
+        <div class="col">
+            <h1>{{message}}</h2>
+                <ul class="list-group">
+                    {% for product in products %}
+                        <li class="list-group-item">
+                            {{product.title}}
+                            {% if product.stock %}
+                                <span class="text-success">Disponible</span>
+                            {%else%}
+                                <span class="text-danger">No Disponible</span>
+                            {% endif %}
+                        </li>
+                    {%empty%}
+                        <h3>No hay productos en la tienda</h3>
+                    {% endfor %}
+                </ul>
+        </div>
+    </div>
+    
+</body>
+<img src="{% static 'img/mochila.jpg'%}" alt="">
+<script src="{% static 'js/main.js' %}"></script>
+
+</html>

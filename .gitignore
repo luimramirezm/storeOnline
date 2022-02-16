@@ -1,0 +1,4 @@
+venv/*
+static/img//*
+__pycache__/*
+db.sqlite3/*
